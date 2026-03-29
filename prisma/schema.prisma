@@ -63,6 +63,7 @@ model Product {
   sku            String?          @unique
   title          String
   description    String
+  shortDescription String         @default("")
   price          Decimal          @db.Decimal(10, 2)
   compareAtPrice Decimal?         @db.Decimal(10, 2)
   batchType      BatchType

@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 
 import { AdminProductForm } from "@/components/AdminProductForm";
 import { authOptions } from "@/lib/auth";
-import { getOrders } from "@/lib/storefront";
+import { getOrders, type StorefrontOrder } from "@/lib/storefront";
 import { formatPrice } from "@/utils/formatPrice";
 
 export default async function AdminPage() {
@@ -45,7 +45,7 @@ export default async function AdminPage() {
           </div>
 
           <div className="mt-8 space-y-4">
-            {orders.map((order) => (
+            {orders.map((order: StorefrontOrder) => (
               <article
                 key={order.id}
                 className="rounded-3xl border border-white/10 bg-slateGlow-900/80 p-5"
@@ -72,7 +72,7 @@ export default async function AdminPage() {
                 </div>
 
                 <div className="mt-4 space-y-2 border-t border-white/10 pt-4 text-sm text-zinc-300">
-                  {order.items.map((item) => (
+                  {order.items.map((item: StorefrontOrder["items"][number]) => (
                     <div key={item.id} className="flex items-center justify-between gap-3">
                       <span>
                         {item.productTitle} x {item.quantity}

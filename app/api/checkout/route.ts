@@ -44,7 +44,7 @@ const checkoutSchema = z.object({
 
 export async function POST(request: Request) {
   try {
-    const body = checkoutSchema.parse(await request.json());
+    const body = checkoutSchema.parse(await request.json()) as z.infer<typeof checkoutSchema>;
     const session = await getServerSession(authOptions);
     const order = await createOrder({
       userId: session?.user?.id,

@@ -445,6 +445,7 @@ export async function createProduct(input: CreateProductInput) {
     slug: input.slug,
     sku: `HK-${input.slug.toUpperCase().replace(/[^A-Z0-9]+/g, "-")}`,
     description: input.description,
+    shortDescription: input.shortDescription,
     price: input.price,
     compareAtPrice: input.compareAtPrice ?? null,
     batchType: input.batchType,
@@ -503,7 +504,7 @@ export async function createProduct(input: CreateProductInput) {
           image: variant.image ?? undefined
         })),
         createdAt: createdProduct.createdAt.toISOString()
-      } satisfies StorefrontProduct;
+      } as StorefrontProduct;
     },
     () =>
       normalizeProduct(

@@ -39,7 +39,21 @@ export async function POST(request: Request) {
   }
 
   try {
-    const body = createProductSchema.parse(await request.json());
+    const body = createProductSchema.parse(await request.json()) as {
+      title: string;
+      slug: string;
+      description: string;
+      shortDescription: string;
+      price: number;
+      compareAtPrice: number | null | undefined;
+      batchType: BatchType;
+      category: ProductCategory;
+      subCategory: string;
+      images: string[];
+      isFeatured: boolean;
+      tags: string[];
+      variants: { size: string; color: string; stockQuantity: number; image?: string }[];
+    };
     const product = await createProduct({
       ...body,
       compareAtPrice: body.compareAtPrice ?? null,

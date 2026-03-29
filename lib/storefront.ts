@@ -510,7 +510,6 @@ export async function createProduct(input: CreateProductInput) {
       normalizeProduct(
         addMockProduct({
           id: `prod-${input.slug}`,
-          shortDescription: input.shortDescription,
           ...productPayload,
           compareAtPrice: input.compareAtPrice ?? undefined,
           variants: input.variants,
